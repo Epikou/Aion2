@@ -80,14 +80,14 @@
     id: 'recolte',
     render: function (root) {
       injectStyle();
-      root.appendChild(ui.hero({ id: 'recolte', title: 'Récolte & artisanat', icon: '⛏️',
+      root.appendChild(ui.hero({ id: 'recolte', title: 'Récolte & artisanat', icon: '',
         subtitle: 'Extraction d\'Essence : Od et Minerais, compétences à monter, passage au grade Professionnel. On récolte sur le trajet, jamais en sortie dédiée.' }));
 
       root.appendChild(ui.callout('info', 'Noms des compétences',
         'Les noms français viennent du cahier des charges (client FR). Les guides anglais consultés utilisent <em>Proficient Handling</em>, <em>Delicate Touch</em> et <em>Lady Luck</em> : les effets correspondent, mais l\'intitulé exact en français n\'a pas pu être vérifié. À contrôler dans la fenêtre de compétences.'));
 
       /* --- Priorité des spécialités --- */
-      root.appendChild(ui.section({ id: 'recolte-priorite', icon: '🎯', title: 'Priorité des spécialités', badge: ui.badge('warn', 'Ordre non confirmé', 'Aucune source consultée ne classe Od contre Minerais ; ordre repris du cahier des charges.') },
+      root.appendChild(ui.section({ id: 'recolte-priorite', icon: '', title: 'Priorité des spécialités', badge: ui.badge('warn', 'Ordre non confirmé', 'Aucune source consultée ne classe Od contre Minerais ; ordre repris du cahier des charges.') },
         el('p', null, 'Ordre conseillé : ', el('strong', null, 'Od (Odyle) d\'abord'), ', puis ', el('strong', null, 'Minerais'), ', puis une troisième spécialité selon la classe / le métier d\'artisanat choisi.'),
         el('ul', null,
           el('li', { html: 'Od : gisements nombreux (Verteron ≈ 700 et Altgard ≈ 650 points), présents aussi dans la Reshanta inférieure et dans des Expéditions. <span class="badge ok">Vérifié ' + V + '</span>' }),
@@ -100,7 +100,7 @@
       ));
 
       /* --- Compétences communes --- */
-      root.appendChild(ui.section({ id: 'recolte-communes', icon: '🤝', title: 'Compétences communes (max 3)', badge: ui.verified(V, 'Effets recoupés (Wikily, U4N) ; noms FR non vérifiables') },
+      root.appendChild(ui.section({ id: 'recolte-communes', icon: '', title: 'Compétences communes (max 3)', badge: ui.verified(V, 'Effets recoupés (Wikily, U4N) ; noms FR non vérifiables') },
         el('p', null, 'Trois compétences s\'appliquent à toutes les récoltes. Montez-les toutes les trois au niveau 10 :'),
         ui.table(['Compétence (FR / EN)', 'Effet'], [
           ['Mains Expertes / Proficient Handling', 'Chaque succès remplit davantage la jauge de réussite (+5 par niveau, jusqu\'à +50 au niv. 10).'],
@@ -112,7 +112,7 @@
       ));
 
       /* --- Technique de farm --- */
-      root.appendChild(ui.section({ id: 'recolte-farm', icon: '🧭', title: 'Technique de farm', badge: ui.badge('info', 'Conseil de jeu') },
+      root.appendChild(ui.section({ id: 'recolte-farm', icon: '', title: 'Technique de farm', badge: ui.badge('info', 'Conseil de jeu') },
         el('ul', null,
           el('li', null, el('strong', null, 'Récolter uniquement sur le trajet'), ' : aucun détour dédié. Le Chercheur affiche les gisements sur la boussole : ne cliquez que ceux qui sont à portée de votre route.'),
           el('li', null, 'Pendant le leveling, cela fait monter l\'Extraction d\'Essence sans temps perdu (voir page Leveling).'),
@@ -121,7 +121,7 @@
       ));
 
       /* --- Passage Professionnel --- */
-      root.appendChild(ui.section({ id: 'recolte-pro', icon: '🏅', title: 'Passage Novice → Professionnel (niveau 50)', badge: ui.verified(V, 'Recoupé : U4N (maj 08/10), Destructoid (02-04/10), Wikily') },
+      root.appendChild(ui.section({ id: 'recolte-pro', icon: '', title: 'Passage Novice → Professionnel (niveau 50)', badge: ui.verified(V, 'Recoupé : U4N (maj 08/10), Destructoid (02-04/10), Wikily') },
         el('div', { class: 'recolte-rank' },
           el('span', { class: 'recolte-n' }, 'Novice 50'), el('span', { class: 'recolte-arrow' }, '→'),
           el('span', { class: 'recolte-n' }, 'Quête [Upgrade] Essence Extraction Specialty Skill'), el('span', { class: 'recolte-arrow' }, '→'),
@@ -138,13 +138,13 @@
       ));
 
       /* --- Marché --- */
-      root.appendChild(ui.section({ id: 'recolte-marche', icon: '💱', title: 'Conseil marché : vendre brut', badge: ui.badge('conflict', 'Écart', 'Le cahier des charges conseille de vendre brut ; un guide estime que les matériaux transformés se vendent plus cher.') },
+      root.appendChild(ui.section({ id: 'recolte-marche', icon: '', title: 'Conseil marché : vendre brut', badge: ui.badge('conflict', 'Écart', 'Le cahier des charges conseille de vendre brut ; un guide estime que les matériaux transformés se vendent plus cher.') },
         el('p', null, 'Sur un marché tout neuf, la règle du cahier des charges est de vendre les matériaux bruts plutôt que de les crafter soi-même (peu de recettes rentables, peu d\'acheteurs de produits finis). L\'Od récolté en chemin se vend sans friction au Marché.'),
         ui.callout('warn', 'Nuance', 'Un guide consulté signale que, sans artisanat, les matières brutes valent moins que leur version transformée sur le courtier. Comparer les prix en direct avant de décider. Le Marché exige l\'abonnement (voir page Économie).')
       ));
 
       /* --- Checklist interactive --- */
-      root.appendChild(ui.section({ id: 'recolte-progression', icon: '✅', title: 'Ma progression de métier' }, progressionBlock()));
+      root.appendChild(ui.section({ id: 'recolte-progression', icon: '', title: 'Ma progression de métier' }, progressionBlock()));
 
       root.appendChild(ui.sources([
         { name: 'U4N — Essence Extraction Professional', url: 'https://www.u4n.com/news/essence-extraction-upgrade-to-professional-aion-2.html' },

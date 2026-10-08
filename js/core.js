@@ -27,9 +27,9 @@
 
   /* ---------- Profils ---------- */
   AION.profiles = [
-    { id: 'templar', name: 'Templar', role: 'Tank', icon: '🛡️', accent: '#5b8def' },
-    { id: 'assassin', name: 'Assassin', role: 'DPS', icon: '🗡️', accent: '#e0645c' },
-    { id: 'chanter', name: 'Chanteur', role: 'Soutien', icon: '🎶', accent: '#d6aa5c' }
+    { id: 'templar', name: 'Templar', role: 'Tank', icon: '', accent: '#5b8def' },
+    { id: 'assassin', name: 'Assassin', role: 'DPS', icon: '', accent: '#e0645c' },
+    { id: 'chanter', name: 'Chanteur', role: 'Soutien', icon: '', accent: '#d6aa5c' }
   ];
   AION.profile = {
     get: function () { var id = AION.store.get('profile', 'templar'); return AION.profiles.filter(function (p) { return p.id === id; })[0] || AION.profiles[0]; },
@@ -114,14 +114,14 @@
     var img = o.img || (AION.images && AION.images.forSection && AION.images.forSection(o.id));
     var h = el('div', { class: 'hero' });
     if (img) h.appendChild(el('img', { src: img, alt: '', loading: 'lazy', referrerpolicy: 'no-referrer', onerror: function () { this.remove(); } }));
-    h.appendChild(el('div', { class: 'hero-in' }, el('h1', null, (o.icon || '') + ' ' + o.title), o.subtitle ? el('p', null, o.subtitle) : null));
+    h.appendChild(el('div', { class: 'hero-in' }, el('h1', null, o.title), o.subtitle ? el('p', null, o.subtitle) : null));
     return h;
   };
 
   // Bloc de contenu avec titre et ancre (id) pour la recherche
   ui.section = function (o) {
     var kids = Array.prototype.slice.call(arguments, 1);
-    return el('section', { class: 'panel', id: o.id }, el('h2', null, (o.icon ? o.icon + ' ' : '') + o.title, o.badge ? ' ' : null, o.badge || null), kids);
+    return el('section', { class: 'panel', id: o.id }, el('h2', null, o.title, o.badge ? ' ' : null, o.badge || null), kids);
   };
 
   // Badge de fiabilité : status = 'ok' | 'warn' | 'conflict' | 'info'
@@ -156,14 +156,14 @@
 
   // Carte qui se retourne. o = { front: Node|string, back: Node|string, accent: '#hex', label }
   ui.flipCard = function (o) {
-    var front = el('div', { class: 'flip-face flip-front' }, typeof o.front === 'string' ? el('div', { html: o.front }) : o.front, el('span', { class: 'flip-hint' }, '↻ retourner'));
-    var back = el('div', { class: 'flip-face flip-back' }, typeof o.back === 'string' ? el('div', { html: o.back }) : o.back, el('span', { class: 'flip-hint' }, '↻ retour'));
+    var front = el('div', { class: 'flip-face flip-front' }, typeof o.front === 'string' ? el('div', { html: o.front }) : o.front, el('span', { class: 'flip-hint' }, 'Retourner'));
+    var back = el('div', { class: 'flip-face flip-back' }, typeof o.back === 'string' ? el('div', { html: o.back }) : o.back, el('span', { class: 'flip-hint' }, 'Retour'));
     var b = el('button', { class: 'flip', type: 'button', 'aria-pressed': 'false', 'aria-label': o.label || 'Retourner la carte', style: o.accent ? { '--accent': o.accent } : null },
       el('div', { class: 'flip-in' }, front, back));
     b.addEventListener('click', function () { var f = b.classList.toggle('flipped'); b.setAttribute('aria-pressed', f); });
     // Hauteur = la plus grande des deux faces (les faces sont en absolute)
     requestAnimationFrame(function () { requestAnimationFrame(function () {
-      var h = Math.max(front.scrollHeight, back.scrollHeight, 230); b.style.minHeight = (h + 4) + 'px';
+      var h = Math.max(front.scrollHeight, back.scrollHeight, o.minHeight || 230); b.style.minHeight = (h + 4) + 'px';
     }); });
     return b;
   };
@@ -271,16 +271,17 @@
   /* ---------- Pages et routeur ---------- */
   // Ordre et libellés des onglets. Les pages réelles les remplacent via AION.register.
   AION.nav = [
-    { id: 'home', title: 'Accueil', icon: '🏠' },
-    { id: 'leveling', title: 'Leveling', icon: '📈' },
-    { id: 'classes', title: 'Classes & synergies', icon: '⚔️' },
-    { id: 'donjons', title: 'Donjons & PvE', icon: '🏰' },
-    { id: 'routine', title: 'Routine', icon: '📅' },
-    { id: 'economie', title: 'Économie', icon: '💰' },
-    { id: 'recolte', title: 'Récolte & artisanat', icon: '⛏️' },
-    { id: 'abime', title: 'Abîme & PvP', icon: '🌀' },
-    { id: 'guilde', title: 'Guilde', icon: '🏛️' },
-    { id: 'ailes', title: 'Ailes & vol', icon: '🪽' }
+    // short = libellé court de l'onglet (le titre complet reste dans la page)
+    { id: 'home', title: 'Accueil', short: 'Accueil' },
+    { id: 'leveling', title: 'Leveling', short: 'Leveling' },
+    { id: 'classes', title: 'Classes & synergies', short: 'Classes' },
+    { id: 'donjons', title: 'Donjons & PvE', short: 'Donjons' },
+    { id: 'routine', title: 'Routine', short: 'Routine' },
+    { id: 'economie', title: 'Économie', short: 'Économie' },
+    { id: 'recolte', title: 'Récolte & artisanat', short: 'Récolte' },
+    { id: 'abime', title: 'Abîme & PvP', short: 'Abîme' },
+    { id: 'guilde', title: 'Guilde', short: 'Guilde' },
+    { id: 'ailes', title: 'Ailes & vol', short: 'Ailes' }
   ];
   AION.nav.forEach(function (n) {
     AION.pages[n.id] = { id: n.id, title: n.title, icon: n.icon, render: function (root) {
@@ -309,9 +310,13 @@
   /* ---------- Démarrage (appelé par boot.js) ---------- */
   AION.start = function () {
     var tabs = document.getElementById('tabs');
-    AION.nav.forEach(function (n) { tabs.appendChild(el('a', { class: 'tab', href: '#/' + n.id, 'data-id': n.id }, n.icon + ' ' + n.title)); });
+    AION.nav.forEach(function (n) { tabs.appendChild(el('a', { class: 'tab', href: '#/' + n.id, 'data-id': n.id, title: n.title }, n.short || n.title)); });
+    // Menu déroulant sur petits écrans (le bouton n'est visible qu'en dessous de 860 px)
+    var menuBtn = document.getElementById('menu-btn');
+    menuBtn.addEventListener('click', function () { var o = tabs.classList.toggle('open'); menuBtn.setAttribute('aria-expanded', o); });
+    tabs.addEventListener('click', function () { tabs.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); });
     var sel = document.getElementById('profile-select');
-    AION.profiles.forEach(function (p) { sel.appendChild(el('option', { value: p.id }, p.icon + ' ' + p.name)); });
+    AION.profiles.forEach(function (p) { sel.appendChild(el('option', { value: p.id }, p.name)); });
     sel.value = AION.profile.get().id;
     sel.addEventListener('change', function () { AION.profile.set(sel.value); });
     document.getElementById('theme-btn').addEventListener('click', function () {

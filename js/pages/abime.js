@@ -137,11 +137,11 @@
     id: 'abime',
     render: function (root) {
       injectStyle();
-      root.appendChild(ui.hero({ id: 'abime', title: 'Abîme & PvP minimal', icon: '🌀',
+      root.appendChild(ui.hero({ id: 'abime', title: 'Abîme & PvP minimal', icon: '',
         subtitle: 'Points d\'Abîme pour s\'équiper en PvE, temps d\'Abîme, bosses de champ, failles, et comment limiter le PvP subi.' }));
 
       /* --- Pourquoi y aller --- */
-      root.appendChild(ui.section({ id: 'abime-pourquoi', icon: '🎯', title: 'Pourquoi y aller', badge: ui.verified(V, 'MeinMMO 30/09, SkyCoach 29/09, Metabot 07/10') },
+      root.appendChild(ui.section({ id: 'abime-pourquoi', icon: '', title: 'Pourquoi y aller', badge: ui.verified(V, 'MeinMMO 30/09, SkyCoach 29/09, Metabot 07/10') },
         el('ul', null,
           el('li', null, 'Les ', el('strong', null, 'Points d\'Abîme (PA)'), ' achètent de l\'équipement utilisable en PvE (boutique d\'Abîme) et alimentent la progression, jusqu\'aux Stigmates d\'après un guide.'),
           el('li', null, 'On peut gagner des PA en tuant des monstres PvE dans l\'Abîme : MeinMMO le présente comme la voie la plus efficace pour monter l\'équipement, et conseille d\'y aller même sans aimer le PvP.'),
@@ -150,14 +150,14 @@
       ));
 
       /* --- Temps d'Abîme --- */
-      root.appendChild(ui.section({ id: 'abime-temps', icon: '⏳', title: 'Temps d\'Abîme (7 h par couche et par semaine)', badge: ui.badge('conflict', 'Écart', 'Metabot (07/10) : 7 h. SkyCoach (29/09) : 8 h par semaine.') },
+      root.appendChild(ui.section({ id: 'abime-temps', icon: '', title: 'Temps d\'Abîme (7 h par couche et par semaine)', badge: ui.badge('conflict', 'Écart', 'Metabot (07/10) : 7 h. SkyCoach (29/09) : 8 h par semaine.') },
         el('p', null, 'Chaque couche (Inférieure, Moyenne, Supérieure Reshanta) a son compteur, remis à ', el('strong', null, '7 h'), ' au reset du mercredi 16h00. L\'abonnement porte Inférieure et Moyenne à 14 h. Une Pierre de Faille d\'Abîme ajoute 1 h (la petite : 30 min).'),
         ui.callout('warn', 'Écart', 'Un guide SkyCoach (29/09) parle de 8 h par semaine. Metabot (07/10, Global) donne 7 h par couche : valeur retenue. Le compteur en jeu fait foi.'),
         cartesCouches()
       ));
 
       /* --- Missions de Devoir --- */
-      root.appendChild(ui.section({ id: 'abime-devoir', icon: '📜', title: 'Missions de Devoir dans l\'Abîme', badge: ui.verified(V, 'Metabot 07/10') },
+      root.appendChild(ui.section({ id: 'abime-devoir', icon: '', title: 'Missions de Devoir dans l\'Abîme', badge: ui.verified(V, 'Metabot 07/10') },
         el('ul', null,
           el('li', null, '5 récompenses par jour, limite partagée par serveur : ', el('strong', null, '50 000 Kina liés + 1 000 PA'), ' chacune.'),
           el('li', null, 'Stock jusqu\'à 20 missions ; 206 contrats « Wanted » disponibles au niv. 45.'),
@@ -166,7 +166,7 @@
       ));
 
       /* --- Planning des bosses --- */
-      root.appendChild(ui.section({ id: 'abime-bosses', icon: '👹', title: 'Bosses de champ hebdomadaires', badge: ui.verified(V, 'Metabot, mis à jour 07/10/2026 (Global)') },
+      root.appendChild(ui.section({ id: 'abime-bosses', icon: '', title: 'Bosses de champ hebdomadaires', badge: ui.verified(V, 'Metabot, mis à jour 07/10/2026 (Global)') },
         ui.callout('warn', 'Hypothèse de fuseau', 'Les guides donnent ces horaires en « heure serveur » sans fuseau. Hypothèse utilisée ici (confirmée par l\'utilisateur pour le reset) : heure serveur = heure de Paris. Si les horaires en jeu ne concordent pas, le décalage vient de là.'),
         vueProchain(root),
         el('div', { style: { height: '14px' } }),
@@ -175,7 +175,7 @@
       ));
 
       /* --- Failles --- */
-      root.appendChild(ui.section({ id: 'abime-failles', icon: '🌌', title: 'Failles spatio-temporelles (Spacetime Rifts)', badge: ui.badge('conflict', 'Écart 30 min / 1 h', 'Durée d\'accès au territoire ennemi : 1 h (cahier des charges) contre 30 min (patch coréen de novembre 2025).') },
+      root.appendChild(ui.section({ id: 'abime-failles', icon: '', title: 'Failles spatio-temporelles (Spacetime Rifts)', badge: ui.badge('conflict', 'Écart 30 min / 1 h', 'Durée d\'accès au territoire ennemi : 1 h (cahier des charges) contre 30 min (patch coréen de novembre 2025).') },
         ui.table(['Point', 'Valeur', 'Statut'], [
           ['Niveau requis', '45', 'html:<span class="badge ok">Vérifié ' + V + '</span>'],
           ['Cycle d\'ouverture', 'Toutes les 3 h, à partir de 02h00 (02, 05, 08, 11, 14, 17, 20, 23 h) ; fuseau supposé = serveur', 'html:<span class="badge ok">Vérifié ' + V + '</span> <span class="badge warn">Fuseau non confirmé</span>'],
@@ -188,7 +188,7 @@
       ));
 
       /* --- Drapeau PvP --- */
-      root.appendChild(ui.section({ id: 'abime-drapeau', icon: '🚩', title: 'Drapeau PvP', badge: ui.badge('warn', 'Détails KR, à confirmer', 'Le mode existe en Global (MassivelyOP) ; durée de recharge et restrictions viennent du patch coréen de déc. 2025.') },
+      root.appendChild(ui.section({ id: 'abime-drapeau', icon: '', title: 'Drapeau PvP', badge: ui.badge('warn', 'Détails KR, à confirmer', 'Le mode existe en Global (MassivelyOP) ; durée de recharge et restrictions viennent du patch coréen de déc. 2025.') },
         el('ul', null,
           el('li', null, 'Activable et désactivable ', el('strong', null, 'partout sauf dans l\'Abysse'), ', où le PvP faction contre faction est permanent. ', ui.verified(V, 'MassivelyOP, 08/08/2026, via recherche')),
           el('li', null, 'Mode PvE : pas d\'attaque possible contre vous ni de votre part envers l\'autre faction. Les joueurs en mode PvP apparaissent en rouge.'),
@@ -197,7 +197,7 @@
       ));
 
       /* --- Farm de PA et cap --- */
-      root.appendChild(ui.section({ id: 'abime-pa', icon: '💠', title: 'Farm de PA sans PvP et cap hebdomadaire', badge: ui.badge('conflict', 'Cap non confirmé', 'Cap de 400 000 PA/sem. vu dans un patch coréen ; Metabot (Global) confirme un plafond mais sans chiffre.') },
+      root.appendChild(ui.section({ id: 'abime-pa', icon: '', title: 'Farm de PA sans PvP et cap hebdomadaire', badge: ui.badge('conflict', 'Cap non confirmé', 'Cap de 400 000 PA/sem. vu dans un patch coréen ; Metabot (Global) confirme un plafond mais sans chiffre.') },
         el('ul', null,
           el('li', null, 'Sources de PA à faible risque : Missions de Devoir (1 000 PA), contrats des marchands de commissions (cumuler plusieurs quêtes d\'une même zone), ordres de commandement (jusqu\'à 12 par semaine).'),
           el('li', null, 'Farm de mobs élites dans les couloirs de l\'Abîme : environ 9 000 PA toutes les 5 à 7 minutes selon un guide, mais zone disputée donc plus risquée. ', ui.badge('warn', 'Une source')),
@@ -206,7 +206,7 @@
       ));
 
       /* --- Minimiser le PvP subi --- */
-      root.appendChild(ui.section({ id: 'abime-eviter', icon: '🛡️', title: 'Limiter le PvP subi', badge: ui.badge('info', 'Conseils de guides') },
+      root.appendChild(ui.section({ id: 'abime-eviter', icon: '', title: 'Limiter le PvP subi', badge: ui.badge('info', 'Conseils de guides') },
         el('ul', null,
           el('li', null, 'Surveiller la mini-carte (indicateurs rouges) et garder un œil sur ses temps de recharge défensifs.'),
           el('li', null, 'Ne pas s\'attarder avec du butin précieux : repartir dès la mission accomplie.'),

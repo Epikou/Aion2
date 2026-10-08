@@ -73,11 +73,11 @@
     id: 'guilde',
     render: function (root) {
       injectStyle();
-      root.appendChild(ui.hero({ id: 'guilde', title: 'Guilde (Legion)', icon: '🏛️',
+      root.appendChild(ui.hero({ id: 'guilde', title: 'Guilde (Legion)', icon: '',
         subtitle: 'Pourquoi rejoindre tôt, ce que coûte le Repaire, ce que la guilde apporte vraiment en PvE, et comment choisir.' }));
 
       /* --- Pourquoi rejoindre tôt --- */
-      root.appendChild(ui.section({ id: 'guilde-pourquoi', icon: '🤝', title: 'Pourquoi rejoindre tôt', badge: ui.badge('conflict', 'Sources en désaccord', 'Buffs et pièces : MeinMMO le dit ; des sites communautaires affirment le contraire.') },
+      root.appendChild(ui.section({ id: 'guilde-pourquoi', icon: '', title: 'Pourquoi rejoindre tôt', badge: ui.badge('conflict', 'Sources en désaccord', 'Buffs et pièces : MeinMMO le dit ; des sites communautaires affirment le contraire.') },
         ui.callout('warn', 'Désaccord à connaître', 'Le cahier des charges parle de buffs passifs et de pièces de guilde hebdomadaires. MeinMMO (30/09) le confirme. Mais deux autres guides (Games Fuze, Guildmanager) affirment qu\'il n\'existe ni niveaux de Legion, ni buffs, ni monnaie de Legion, ni entrepôt, et Metabot n\'inclut aucun objet de guilde dans son compteur hebdomadaire. Regardez la fenêtre de guilde en jeu avant de compter dessus.'),
         el('div', { class: 'guilde-claim' },
           claim('guilde-pro', 'Rejoindre tôt : équipiers potentiels, buffs et bonus passifs, et une distribution hebdomadaire de pièces de guilde à dépenser en matériaux d\'amélioration.', 'MeinMMO, 30/09/2026'),
@@ -88,7 +88,7 @@
       ));
 
       /* --- Repaire --- */
-      root.appendChild(ui.section({ id: 'guilde-repaire', icon: '🛩️', title: 'Repaire de Guilde (Legion Hideout / Hall)', badge: ui.badge('conflict', 'Durée de location en désaccord', '30 jours (Metabot) ou 23 j 15 h (Guildmanager).') },
+      root.appendChild(ui.section({ id: 'guilde-repaire', icon: '', title: 'Repaire de Guilde (Legion Hideout / Hall)', badge: ui.badge('conflict', 'Durée de location en désaccord', '30 jours (Metabot) ou 23 j 15 h (Guildmanager).') },
         ui.table(['Point', 'Ce qui est établi', 'Statut'], [
           ['Coût', '1 000 000 Kina par location', 'html:<span class="badge ok">Vérifié ' + V + '</span> (Metabot, Guildmanager, 6sword)'],
           ['Durée de location', '30 jours (Metabot, client Global) ou environ 23 j 15 h (Guildmanager)', 'html:<span class="badge conflict">Écart</span>'],
@@ -101,7 +101,7 @@
       ));
 
       /* --- Contenu --- */
-      root.appendChild(ui.section({ id: 'guilde-contenu', icon: '🏰', title: 'Contenu de guilde : raids, sièges, coordination', badge: ui.badge('conflict', 'Écart', 'Planning et rôle de la Legion dans le siège d\'artefact contradictoires.') },
+      root.appendChild(ui.section({ id: 'guilde-contenu', icon: '', title: 'Contenu de guilde : raids, sièges, coordination', badge: ui.badge('conflict', 'Écart', 'Planning et rôle de la Legion dans le siège d\'artefact contradictoires.') },
         el('ul', null,
           el('li', null, el('strong', null, 'Raids / donjons : '), 'se font en groupe (4 à 10 joueurs) ; une guilde sert surtout à trouver des équipiers réguliers. Aucune obligation d\'appartenir à une guilde.'),
           el('li', null, el('strong', null, 'Siège d\'artefact / occupation : '), 'événement de faction Élyséens contre Asmodiens. Planning discuté : lun./jeu./sam. à 21h00 (Metabot) ou mer./sam. à 22h00 (Guildmanager), heure serveur. Récompense individuelle ; le gagnant garde 48 h d\'accès exclusif au Couloir d\'Abîme d\'après Guildmanager.'),
@@ -111,7 +111,7 @@
       ));
 
       /* --- Création --- */
-      root.appendChild(ui.section({ id: 'guilde-creer', icon: '🏗️', title: 'Créer sa Legion', badge: ui.badge('warn', 'Non confirmé', 'Niveau et coût de création non vérifiés (une source : niveau 5 et 100 000 Kina).') },
+      root.appendChild(ui.section({ id: 'guilde-creer', icon: '', title: 'Créer sa Legion', badge: ui.badge('warn', 'Non confirmé', 'Niveau et coût de création non vérifiés (une source : niveau 5 et 100 000 Kina).') },
         el('p', null, 'Coût et niveau minimum pour fonder une Legion : ', ui.badge('warn', 'Non confirmé'), ' Une source cite le niveau 5 et 100 000 Kina, une autre dit ne pas pouvoir le vérifier. Le menu de création en jeu affiche les exigences réelles.'),
         el('ul', null,
           el('li', null, 'Adhésion sur candidature, attente de 24 h avant de rejoindre une autre Legion après un départ (Guildmanager).'),
@@ -119,7 +119,7 @@
       ));
 
       /* --- Checklist recruteur --- */
-      root.appendChild(ui.section({ id: 'guilde-choisir', icon: '📝', title: 'Choisir une guilde PvE : questions au recruteur' }, checklistRecruteur()));
+      root.appendChild(ui.section({ id: 'guilde-choisir', icon: '', title: 'Choisir une guilde PvE : questions au recruteur' }, checklistRecruteur()));
 
       root.appendChild(ui.sources([
         { name: 'MeinMMO — Einsteiger-Guide (30/09/2026)', url: 'https://mein-mmo.de/aion-2-einsteiger-guide-tipps/' },

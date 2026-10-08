@@ -11,8 +11,8 @@
   var CSS = [
     '.home-top{display:grid;grid-template-columns:1.7fr 1fr;gap:14px;margin-bottom:16px}',
     '.home-top>.panel{margin-bottom:0}',
-    '.home-clock{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 10px}',
-    '.home-unit{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:6px 14px;min-width:78px;text-align:center}',
+    '.home-clock{display:grid;grid-template-columns:repeat(4,minmax(0,92px));gap:10px;margin:6px 0 12px}',
+    '.home-unit{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:6px 8px;text-align:center}',
     '.home-unit b{display:block;font-size:2rem;line-height:1.2;font-variant-numeric:tabular-nums}',
     '.home-unit span{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}',
     '.home-daily{font-variant-numeric:tabular-nums}',
@@ -46,28 +46,28 @@
   /* ---------- Contenu des cartes « Tout en un coup d'œil » ----------
      flip:true => carte retournable (face = phrase, dos = points clés). */
   var GLANCE = [
-    { id: 'leveling', icon: '📈', title: 'Leveling', accent: 'var(--blue)', flip: true,
+    { id: 'leveling', icon: '', title: 'Leveling', accent: 'var(--blue)', flip: true,
       line: 'Side content obligatoire vers 22 et 32 : jauge d\'Ascension — ~10-15 h jusqu\'au 45.',
       back: ['Daevanion au niv. 12 : nœuds « +1 niveau de skill » d\'abord', 'Slots de Stigmates aux niv. 22 / 27 / 32 / 37', 'En route : Kibelisks, Plumes, donjons scellés, forts', 'Garder le Shugo Festival pour le niv. 45'] },
-    { id: 'classes', icon: '⚔️', title: 'Classes & synergies', accent: 'var(--violet)', flip: true,
+    { id: 'classes', icon: '', title: 'Classes & synergies', accent: 'var(--violet)', flip: true,
       line: 'Templar tient l\'aggro, Chanteur buffe et soigne, Assassin déclenche le burst dans le dos.',
       back: ['Templar : build Judgment (Judgment, Punishment, Shield Smite)', 'Assassin : Heart Gore (critique requis) + Insignia Explosion', 'Chanteur : buffs de groupe, off-heal, build Mantra/Words', 'Priorité de stats et rotation exactes : à confirmer'] },
-    { id: 'donjons', icon: '🏰', title: 'Donjons & PvE', accent: 'var(--gold)', flip: true,
+    { id: 'donjons', icon: '', title: 'Donjons & PvE', accent: 'var(--gold)', flip: true,
       line: 'Paliers de GS : 700 (Krao Cave, Draupnir) → 1 400 (Urugugu) → 2 100 (Temple du Feu).',
       back: ['Donjons scellés : 15 000 Kina par 1er clear, illimité', 'Priorité quotidienne : Daeva Bio-Research Base (pierres d\'enchant)', 'Déblocage Krao 20 / Urugugu 28 / Temple du Feu 35 (à recouper)', 'Transcendance (~1 600) et Raid Ludra (2 800) : non confirmés'] },
-    { id: 'routine', icon: '📅', title: 'Routine', accent: 'var(--green)', flip: true,
+    { id: 'routine', icon: '', title: 'Routine', accent: 'var(--green)', flip: true,
       line: 'Reset mercredi 16h (Paris) : 5 Missions de Devoir/jour et 14 Fissures/semaine avant tout.',
       back: ['Règle critique : toujours prendre le cube en sortant d\'un donjon', 'Ordre : Devoir → Fissures → scellés → Od en route → Expéditions', 'Dépenser l\'Od avant le cap (overflow en 4 j 16 h)', 'Hebdos non cumulables : ne rien laisser passer le mercredi'] },
-    { id: 'economie', icon: '💰', title: 'Économie', accent: 'var(--gold)', flip: true,
+    { id: 'economie', icon: '', title: 'Économie', accent: 'var(--gold)', flip: true,
       line: 'Abonnement ~15 $/mois quasi obligatoire : Marché et échange Kina↔Quna.',
       back: ['Sans abonnement : pas d\'Hôtel des Ventes', 'Daeva Pass par perso, rentable à 4+ jours/semaine', 'Boutique Quna = cosmétiques, 0 stat', 'Marché récent : vendre brut plutôt que crafter'] },
-    { id: 'recolte', icon: '⛏️', title: 'Récolte & artisanat', accent: 'var(--green)',
+    { id: 'recolte', icon: '', title: 'Récolte & artisanat', accent: 'var(--green)',
       line: 'Spécialité Od d\'abord, puis Minerais ; récolter uniquement sur le trajet.' },
-    { id: 'abime', icon: '🌀', title: 'Abîme & PvP', accent: 'var(--red)',
+    { id: 'abime', icon: '', title: 'Abîme & PvP', accent: 'var(--red)',
       line: 'Temps d\'Abîme 7 h/couche/semaine ; les PA se farment sur mobs PvE, drapeau PvP désactivable (sauf Abysse).' },
-    { id: 'guilde', icon: '🏛️', title: 'Guilde', accent: 'var(--violet)',
+    { id: 'guilde', icon: '', title: 'Guilde', accent: 'var(--violet)',
       line: 'Rejoindre tôt : buffs passifs et pièces de guilde hebdomadaires.' },
-    { id: 'ailes', icon: '🪽', title: 'Ailes & vol', accent: 'var(--blue)',
+    { id: 'ailes', icon: '', title: 'Ailes & vol', accent: 'var(--blue)',
       line: 'Seule la collection d\'Ailes (28) augmente la puissance de vol ; les ailes de boutique = 0 stat.' }
   ];
 
@@ -110,7 +110,7 @@
       live.next.appendChild(el('div', { class: 'small muted' }, 'Tâche ' + na.kind + (na.total > 1 ? ' — ' + na.done + ' / ' + na.total + ' fait' + (na.done > 1 ? 's' : '') : '') + '. ',
         el('a', { href: '#/routine' }, 'Voir la routine')));
     } else {
-      live.next.appendChild(el('strong', null, 'Tout est fait pour cette période. 🎉'));
+      live.next.appendChild(el('strong', null, 'Tout est fait pour cette période. '));
       live.next.appendChild(el('div', { class: 'small muted' }, 'Rendez-vous au prochain reset.'));
     }
   }
@@ -120,8 +120,8 @@
     if (!live) return;
     var cl = AION.data.checklist;
     live.daily.innerHTML = ''; live.weekly.innerHTML = '';
-    live.daily.appendChild(ui.checklist({ period: 'daily', items: cl.daily, title: '☀️ Quotidien', compact: true }));
-    live.weekly.appendChild(ui.checklist({ period: 'weekly', items: cl.weekly, title: '📆 Hebdomadaire', compact: true }));
+    live.daily.appendChild(ui.checklist({ period: 'daily', items: cl.daily, title: 'Quotidien', compact: true }));
+    live.weekly.appendChild(ui.checklist({ period: 'weekly', items: cl.weekly, title: 'Hebdomadaire', compact: true }));
     paintSummary();
   }
 
@@ -155,11 +155,11 @@
     var go = el('a', { class: 'home-go', href: '#/' + g.id }, 'Ouvrir la section →');
     if (!g.flip) {
       return el('a', { class: 'home-card', href: '#/' + g.id, style: '--accent:' + g.accent },
-        el('h3', null, g.icon + ' ' + g.title), el('p', null, g.line), el('span', { class: 'home-go' }, 'Ouvrir la section →'));
+        el('h3', null, g.title), el('p', null, g.line), el('span', { class: 'home-go' }, 'Ouvrir la section →'));
     }
-    var front = el('div', null, el('h3', { class: 'home-flip-t' }, g.icon + ' ' + g.title), el('p', null, g.line));
+    var front = el('div', null, el('h3', { class: 'home-flip-t' }, g.title), el('p', null, g.line));
     var back = el('div', { class: 'home-back' }, el('h3', { class: 'home-flip-t' }, g.title), el('ul', null, g.back.map(function (b) { return el('li', null, b); })));
-    var card = ui.flipCard({ front: front, back: back, label: 'Retourner la carte ' + g.title });
+    var card = ui.flipCard({ front: front, back: back, label: 'Retourner la carte ' + g.title, minHeight: 150 });
     card.style.setProperty('--accent', g.accent);   // (ui.flipCard ne pose pas correctement la variable CSS)
     return el('div', { class: 'home-flipwrap' }, card, go);
   }
@@ -176,10 +176,9 @@
     root.appendChild(wrap);
 
     // 1. Hero + rappel du profil actif
-    var hero = ui.hero({ id: 'home', icon: '🏠', title: 'AION 2 — Guide de groupe PvE', subtitle: 'Tank, DPS et soutien : tout ce qu\'il faut pour progresser à trois, sans perdre une récompense.' });
-    hero.querySelector('.hero-in').appendChild(el('p', { id: 'home-hero' }, el('span', { class: 'pill' }, 'Profil actif : ' + prof.icon + ' ' + prof.name + ' · ' + prof.role), ' ',
+    var hero = ui.hero({ id: 'home', icon: '', title: 'AION 2 — Guide de groupe PvE', subtitle: 'Tank, DPS et soutien : tout ce qu\'il faut pour progresser à trois, sans perdre une récompense.' });
+    hero.querySelector('.hero-in').appendChild(el('p', { id: 'home-hero' }, el('span', { class: 'pill' }, 'Profil actif : ' + prof.name + ' · ' + prof.role), ' ',
       el('span', { class: 'small muted' }, 'Changez de profil en haut à droite : les cases sont séparées par joueur.')));
-    wrap.appendChild(hero);
 
     // 2. Compte à rebours + prochaine action
     var weeklyTarget = AION.time.nextWeeklyReset(), dailyTarget = AION.time.nextDailyReset();
@@ -193,23 +192,24 @@
     var next = el('div', { class: 'home-next' });
     var bars = el('div');
 
-    wrap.appendChild(el('div', { class: 'home-top' },
+    var tops = el('div', { class: 'home-top' },
       el('section', { class: 'panel', id: 'home-countdown' },
-        el('h2', null, '⏳ Prochain reset hebdomadaire'), clock,
+        el('h2', null, 'Prochain reset hebdomadaire'), clock,
         el('div', { class: 'small' }, 'Heure de Paris : ', weeklyParis),
         el('div', { class: 'small' }, 'Votre fuseau : ', weeklyLocal),
         el('div', { class: 'small', style: { marginTop: '6px' } }, 'Reset quotidien dans : ', dailyTxt, ' ', ui.unconfirmed('Reset quotidien supposé à la même heure (16h Paris) : non confirmé.')),
         el('div', { class: 'small muted', style: { marginTop: '6px' } }, 'Mercredi 16h00 (heure de Paris) — le compteur en jeu fait foi.')),
       el('section', { class: 'panel', id: 'home-next' },
-        el('h2', null, '🎯 Prochaine action recommandée'), next, bars)));
+        el('h2', null, 'Prochaine action recommandée'), next, bars));
+    var secCountdown = tops.children[0], secNext = tops.children[1];
 
     // 3. Checklists côte à côte + encadré critique
     var dailyHold = el('div'), weeklyHold = el('div');
-    wrap.appendChild(el('section', { class: 'panel', id: 'home-checklists' },
-      el('h2', null, '✅ Checklists de ' + prof.name),
-      ui.callout('critical', '⚠️ Règle critique', cl.critical),
+    var secChecks = el('section', { class: 'panel', id: 'home-checklists' },
+      el('h2', null, 'Checklists de ' + prof.name),
+      ui.callout('critical', 'Règle critique', cl.critical),
       el('div', { class: 'home-lists' }, dailyHold, weeklyHold),
-      el('p', { class: 'small muted', style: { margin: '10px 0 0' } }, 'Les cases repartent à zéro au reset. Détails et notes complètes dans ', el('a', { href: '#/routine' }, 'Routine'), '.')));
+      el('p', { class: 'small muted', style: { margin: '10px 0 0' } }, 'Les cases repartent à zéro au reset. Détails et notes complètes dans ', el('a', { href: '#/routine' }, 'Routine'), '.'));
 
     live = { wrap: wrap, units: units, dailyTxt: dailyTxt, weeklyParis: weeklyParis, weeklyLocal: weeklyLocal,
       daily: dailyHold, weekly: weeklyHold, bars: bars, next: next, weeklyTarget: weeklyTarget, dailyTarget: dailyTarget };
@@ -217,14 +217,14 @@
     timer = setInterval(tick, 1000);
 
     // 4. Tout en un coup d'œil
-    wrap.appendChild(el('section', { class: 'panel', id: 'home-glance' },
-      el('h2', null, '👀 Tout en un coup d\'œil'),
+    var secGlance = el('section', { class: 'panel', id: 'home-glance' },
+      el('h2', null, 'Tout en un coup d\'œil'),
       el('p', { class: 'small muted' }, 'Une carte par section. Les cartes à flèche se retournent pour les points clés ; le lien mène à la section complète.'),
-      el('div', { class: 'home-glance' }, GLANCE.map(glanceCard))));
+      el('div', { class: 'home-glance' }, GLANCE.map(glanceCard)));
 
     // 5. Chiffres clés
-    wrap.appendChild(el('section', { class: 'panel', id: 'home-stats' },
-      el('h2', null, '🔢 Chiffres clés'),
+    var secStats = el('section', { class: 'panel', id: 'home-stats' },
+      el('h2', null, 'Chiffres clés'),
       el('div', { class: 'home-stats' },
         statCard('5 / jour', 'Missions de Devoir (par serveur) : 50 000 Kina + 1 000 PA chacune', ui.verified('08/10')),
         statCard('14 / semaine', 'Fissures Inconnues (par serveur), soit 2 par jour', ui.verified('08/10')),
@@ -233,16 +233,19 @@
         statCard('7 h / couche', 'Temps d\'Abîme hebdomadaire (14 h abonné sur Inférieure et Moyenne)', ui.verified('08/10')),
         statCard('3 / jour', 'Clés Shugo Festival, cap 12 (21 abonné)', ui.badge('conflict', 'Écart', 'Metabot (07/10) : 3/jour, cap 12. MeinMMO (29/09) : 2/jour, cap 14. Source plus récente retenue.')),
         statCard('~10-15 h', 'Pour atteindre le niveau 45 (niveau max)', ui.unconfirmed()),
-        statCard('4 tentatives', 'Raids hebdomadaires (Sanctuaire)', ui.badge('conflict', 'Écart', 'Cahier des charges : 4 tentatives/raid. MeinMMO : 2×/semaine. À confirmer en jeu.')))));
+        statCard('4 tentatives', 'Raids hebdomadaires (Sanctuaire)', ui.badge('conflict', 'Écart', 'Cahier des charges : 4 tentatives/raid. MeinMMO : 2×/semaine. À confirmer en jeu.'))));
 
     // 6. Vérification des données
-    wrap.appendChild(el('section', { class: 'panel', id: 'home-verif' },
-      el('h2', null, '🔍 Vérification des données'),
+    var secVerif = el('section', { class: 'panel', id: 'home-verif' },
+      el('h2', null, 'Vérification des données'),
       el('div', { class: 'home-legend' },
         el('span', { class: 'home-li' }, ui.verified('08/10'), 'recoupé par plusieurs sources (date de vérification)'),
         el('span', { class: 'home-li' }, ui.unconfirmed(), 'repris du cahier des charges, non recoupé'),
         el('span', { class: 'home-li' }, ui.badge('conflict', 'Écart', 'Sources en désaccord'), 'sources en désaccord ou donnée Corée ≠ Global')),
-      el('p', { class: 'small muted', style: { margin: 0 } }, 'Guide rédigé le 8 octobre 2026 (serveurs Global EU, jeu sorti le 5 octobre 2026). Les valeurs peuvent évoluer avec les patchs : en cas de doute, le jeu fait foi.')));
+      el('p', { class: 'small muted', style: { margin: 0 } }, 'Guide rédigé le 8 octobre 2026 (serveurs Global EU, jeu sorti le 5 octobre 2026). Les valeurs peuvent évoluer avec les patchs : en cas de doute, le jeu fait foi.'));
+
+    // Ordre d'affichage : compte à rebours, en-tête, aperçu, chiffres clés, puis le reste
+    [secCountdown, hero, secGlance, secStats, secNext, secChecks, secVerif].forEach(function (n) { wrap.appendChild(n); });
   }
 
   /* ---------- Enregistrement de la page et index de recherche ---------- */

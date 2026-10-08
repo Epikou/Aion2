@@ -12,7 +12,7 @@
   /* ---------- Données par classe ---------- */
   var CLASSES = [
     {
-      id: 'templar', name: "Templar", icon: "🛡️", role: "Tank", accent: "var(--blue)",
+      id: 'templar', name: "Templar", icon: "", role: "Tank", accent: "var(--blue)",
       summary: "Tank classique : épée à une main + bouclier, armure plate. Tient l'aggro et réduit les dégâts reçus par le groupe.",
       weapon: "Épée longue + bouclier, armure plate",
       stats: [ "Blocage", "Défense", "PV", "Résistance aux critiques", "Attaque" ],
@@ -26,7 +26,7 @@
       oneClick: "Un guide parle d'une macro en jeu qui automatise la boucle. Contenu précis de la macro Templar : à confirmer en jeu."
     },
     {
-      id: 'assassin', name: "Assassin", icon: "🗡️", role: "DPS", accent: "var(--red)",
+      id: 'assassin', name: "Assassin", icon: "", role: "DPS", accent: "var(--red)",
       summary: "Dégâts de burst en mêlée, surtout dans le dos de la cible. Coups critiques et buffs de burst alignés avec le groupe.",
       weapon: "Dagues",
       stats: [ "Attaque", "Coup critique (plafond 50 %)", "Bonus de dégâts de dos", "Précision (si Ambush/Heart Gore ratent un boss)", "Esquive" ],
@@ -41,7 +41,7 @@
       oneClick: "Les guides soulignent que le positionnement (dans le dos) compte plus que l'ordre exact des touches ; une macro en jeu existe. Contenu exact : à confirmer en jeu."
     },
     {
-      id: 'chanter', name: "Chanteur (Chanter)", icon: "🎶", role: "Soutien", accent: "var(--gold)",
+      id: 'chanter', name: "Chanteur (Chanter)", icon: "", role: "Soutien", accent: "var(--gold)",
       summary: "Soutien hybride à la mêlée : buffs de groupe (Mantras), soins et un peu de dégâts. Classé S en tier list (KeenGamer).",
       weapon: "Bâton, armure de mailles",
       stats: [ "PV", "Attaque", "Défense", "Coup critique (plafond 50 %)", "Précision (si le Stun d'Impactful Crush rate les boss)" ],
@@ -91,7 +91,7 @@
   /* Carte retournable : face = rôle / résumé ; dos = stats, upgrade, rotation */
   function classCard(c) {
     var front = el('div', { class: 'classes-front' },
-      el('div', { class: 'classes-ico' }, c.icon),
+      
       el('h3', null, c.name),
       el('div', { class: 'classes-role' }, el('span', { class: 'pill' }, c.role)),
       el('p', { class: 'small' }, c.summary),
@@ -111,15 +111,15 @@
 
   function render(root) {
     injectStyle();
-    root.appendChild(ui.hero({ id: 'classes', icon: '⚔️', title: 'Classes & synergies',
+    root.appendChild(ui.hero({ id: 'classes', icon: '', title: 'Classes & synergies',
       subtitle: "Templar, Assassin, Chanteur : stats, ordre d'amélioration, rotation en un clic, et comment le trio s'imbrique." }));
 
-    root.appendChild(ui.section({ id: 'cl-fiches', icon: '🃏', title: "Fiches de classe (cliquer pour retourner)" },
+    root.appendChild(ui.section({ id: 'cl-fiches', icon: '', title: "Fiches de classe (cliquer pour retourner)" },
       ui.callout('warn', "Précautions",
         "Les rotations et priorités viennent de guides communautaires, souvent basés sur la Corée/Taïwan ; les valeurs Global changent. Aucune source ne donne l'ordre d'amélioration pièce par pièce. Vérifiez les info-bulles en jeu avant de dépenser des matériaux rares."),
       el('div', { class: 'classes-grid' }, CLASSES.map(classCard))));
 
-    root.appendChild(ui.section({ id: 'cl-stuff', icon: '🧰', title: "Améliorer son équipement : méthode générale", badge: ui.unconfirmed("Source unique (guide communautaire) ; ordre par pièce non trouvé") },
+    root.appendChild(ui.section({ id: 'cl-stuff', icon: '', title: "Améliorer son équipement : méthode générale", badge: ui.unconfirmed("Source unique (guide communautaire) ; ordre par pièce non trouvé") },
       list('ul', [
         "Équiper tout ce qui est une amélioration, extraire (démonter) le reste.",
         "Réinvestir les pierres obtenues dans l'arme en priorité, ou dans les pièces qui portent vos stats prioritaires.",
@@ -128,7 +128,7 @@
       ])));
 
     // --- Synergies ---
-    root.appendChild(ui.section({ id: 'cl-synergies', icon: '🤝', title: "Synergies de groupe" },
+    root.appendChild(ui.section({ id: 'cl-synergies', icon: '', title: "Synergies de groupe" },
       el('h3', null, "Ce que le Chanteur maintient"),
       ui.table(["Compétence", "Effet", "Note"], SUPPORT),
       el('p', { class: 'small' }, "Noms et effets : Metabot et AION2 Hub (08/10/2026) ", ui.verified('08/10', "Noms recoupés par 2 sources ; effets chiffrés non repris")),
@@ -152,7 +152,7 @@
           ui.badge('conflict', 'Écart', "Patch relayé par AION2 Hub, applicabilité Global non confirmée")))));
 
     // --- Conseil Chanteur 14 ---
-    root.appendChild(ui.section({ id: 'cl-chanteur14', icon: '🎶', title: "Conseil spécial : Chanteur niveau 14", badge: ui.unconfirmed("Déduction : stigmates dès le niv.22 ; contenu exact du niv.14 à voir en jeu") },
+    root.appendChild(ui.section({ id: 'cl-chanteur14', icon: '', title: "Conseil spécial : Chanteur niveau 14", badge: ui.unconfirmed("Déduction : stigmates dès le niv.22 ; contenu exact du niv.14 à voir en jeu") },
       ui.callout('tip', "Priorité : s'intégrer au groupe",
         "À 14, ni Stigmates (niv.22) ni Daevanion (ouvert au niv.12 sur le papier, mais pas visible chez vous). Votre valeur vient donc de la présence et des soins de base."),
       list('ul', [

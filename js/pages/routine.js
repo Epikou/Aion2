@@ -90,7 +90,7 @@
     function save() { AION.store.set('planner', data); buildPrint(); }
 
     function buildTable() {
-      var thead = el('tr', null, el('th', null, "Jour de jeu"), AION.profiles.map(function (p) { return el('th', null, p.icon + ' ' + p.name); }));
+      var thead = el('tr', null, el('th', null, "Jour de jeu"), AION.profiles.map(function (p) { return el('th', null, p.name); }));
       var body = DAYS.map(function (dn, d) {
         var dateTxt = dateParis(start + d * DAY_MS);
         return el('tr', { class: d === todayIdx ? 'routine-today' : '' },
@@ -126,7 +126,7 @@
     mount(); buildPrint();
 
     var tools = el('div', { class: 'routine-tools' },
-      el('button', { class: 'btn', type: 'button', onclick: function () { buildPrint(); window.print(); } }, "🖨️ Imprimer / aperçu"),
+      el('button', { class: 'btn', type: 'button', onclick: function () { buildPrint(); window.print(); } }, "Imprimer / aperçu"),
       el('button', { class: 'btn', type: 'button', onclick: function () {
         if (window.confirm("Effacer tout le planificateur (21 cases) ? Cette action est définitive.")) { data = {}; AION.store.set('planner', data); mount(); buildPrint(); }
       } }, "↺ Réinitialiser"));
@@ -136,7 +136,7 @@
   /* ---------- Rendu ---------- */
   function render(root) {
     injectStyle();
-    root.appendChild(ui.hero({ id: 'routine', icon: '📅', title: 'Routine quotidienne & hebdo',
+    root.appendChild(ui.hero({ id: 'routine', icon: '', title: 'Routine quotidienne & hebdo',
       subtitle: "Cochez au fil de la semaine, repérez les compteurs qui débordent, répartissez les tâches du trio." }));
 
     // --- Rappel du reset (compte à rebours vivant) ---
@@ -148,7 +148,7 @@
     }
     var timer = setInterval(tick, 1000);
     var wk = AION.time.nextWeeklyReset(), tz = AION.time.userTz();
-    root.appendChild(ui.section({ id: 'rt-reset', icon: '⏰', title: "Rappel du reset", badge: ui.verified('08/10', "Hebdo : mercredi 16h00 Paris (confirmé par l'utilisateur). Quotidien : même heure supposée.") },
+    root.appendChild(ui.section({ id: 'rt-reset', icon: '', title: "Rappel du reset", badge: ui.verified('08/10', "Hebdo : mercredi 16h00 Paris (confirmé par l'utilisateur). Quotidien : même heure supposée.") },
       el('div', { class: 'routine-cd' },
         el('div', { class: 'stat' }, el('span', { class: 'small muted' }, "Prochain reset quotidien (16h Paris)"), cdDaily, ui.unconfirmed("Heure du reset quotidien supposée identique : le compteur en jeu fait foi")),
         el('div', { class: 'stat' }, el('span', { class: 'small muted' }, "Prochain reset hebdo (mercredi 16h Paris)"), cdWeekly)),
@@ -160,20 +160,20 @@
     root.appendChild(ui.callout('critical', "Règle critique du cube", AION.data.checklist.critical));
 
     // --- Checklists ---
-    root.appendChild(ui.section({ id: 'rt-checklists', icon: '✅', title: "Checklists du profil " + AION.profile.get().name },
+    root.appendChild(ui.section({ id: 'rt-checklists', icon: '', title: "Checklists du profil " + AION.profile.get().name },
       el('p', { class: 'small muted' }, "Les cases sont propres à chaque profil et se décochent seules au reset. Changez de profil en haut à droite."),
       el('div', { class: 'grid c2' },
         el('div', null, ui.checklist({ period: 'daily', items: AION.data.checklist.daily, title: "Quotidien" })),
         el('div', null, ui.checklist({ period: 'weekly', items: AION.data.checklist.weekly, title: "Hebdomadaire" })))));
 
     // --- Ordre d'optimisation ---
-    root.appendChild(ui.section({ id: 'rt-ordre', icon: '🏁', title: "Ordre d'optimisation", badge: ui.unconfirmed("Cahier des charges") },
+    root.appendChild(ui.section({ id: 'rt-ordre', icon: '', title: "Ordre d'optimisation", badge: ui.unconfirmed("Cahier des charges") },
       el('ol', { class: 'routine-order' }, ORDER.map(function (o) {
         return el('li', null, el('div', null, el('strong', null, o[0]), el('div', { class: 'small muted' }, o[1])));
       }))));
 
     // --- Compteurs ---
-    root.appendChild(ui.section({ id: 'rt-compteurs', icon: '🔢', title: "Compteurs : cap et jours avant overflow" },
+    root.appendChild(ui.section({ id: 'rt-compteurs', icon: '', title: "Compteurs : cap et jours avant overflow" },
       ui.table(["Ressource", "Recharge", "Cap (sans abo / abonné)", "Plein en (sans abo / abonné)", "Vérification"],
         COUNTERS.map(function (c) {
           var same = c.cap[0] === c.cap[1];
@@ -189,7 +189,7 @@
       el('p', { class: 'small muted' }, "Calcul : plein en = cap ÷ gain par jour. Exemple Od : 560 ÷ 120 = 4 j 16 h ; 840 ÷ 120 = 7 j.")));
 
     // --- Planificateur ---
-    root.appendChild(ui.section({ id: 'rt-planner', icon: '🗓️', title: "Planificateur de semaine (qui fait quoi, quel jour)" },
+    root.appendChild(ui.section({ id: 'rt-planner', icon: '', title: "Planificateur de semaine (qui fait quoi, quel jour)" },
       el('p', { class: 'small muted' }, "Une semaine de jeu commence au reset (mercredi 16h, Paris). Choisissez une activité et ajoutez une note libre ; tout est enregistré automatiquement dans ce navigateur. Faites défiler la grille horizontalement sur petit écran."),
       planner()));
 

@@ -61,7 +61,7 @@
 
   function render(root) {
     injectStyle();
-    root.appendChild(ui.hero({ id: 'donjons', icon: '🏰', title: 'Donjons & PvE',
+    root.appendChild(ui.hero({ id: 'donjons', icon: '', title: 'Donjons & PvE',
       subtitle: "Quoi faire quand, avec quel équipement, et ce qu'il ne faut jamais rater." }));
 
     // Règle critique en tête
@@ -69,14 +69,14 @@
       AION.data.checklist.critical + " Une sortie sans prendre le cube compte comme un « skip »."));
 
     // --- Tableau par GS ---
-    root.appendChild(ui.section({ id: 'dj-gs', icon: '📊', title: "Progression par GS" },
+    root.appendChild(ui.section({ id: 'dj-gs', icon: '', title: "Progression par GS" },
       ui.callout('info', "À propos du « GS »",
         "Ce n'est pas un terme officiel : les sources parlent de niveau d'objet (item level) ou de puissance de combat. Ce guide utilise « GS » pour le niveau d'objet requis."),
       ui.table(["Contenu", "Type", "Niv.", "GS requis", "Vérification"], rows()),
       el('p', { class: 'small muted' }, "Expéditions en Global : 5 joueurs max (4 en Corée). Niveau max 45, pas d'objets « heroic » en saison 1 (livestream, via PlayNews).")));
 
     // --- Cartes ---
-    root.appendChild(ui.section({ id: 'dj-cartes', icon: '🃏', title: "Les donjons en cartes (cliquer pour retourner)" },
+    root.appendChild(ui.section({ id: 'dj-cartes', icon: '', title: "Les donjons en cartes (cliquer pour retourner)" },
       el('div', { class: 'donjons-grid' }, CARDS.map(function (c) {
         var front = el('div', null, el('div', { class: 'donjons-name' }, c.n), el('div', { class: 'donjons-line muted' }, c.t));
         var back = el('div', null,
@@ -90,7 +90,7 @@
       }))));
 
     // --- Donjons Scellés ---
-    root.appendChild(ui.section({ id: 'dj-scelles', icon: '🔒', title: "Donjons Scellés prioritaires pour le Kina" },
+    root.appendChild(ui.section({ id: 'dj-scelles', icon: '', title: "Donjons Scellés prioritaires pour le Kina" },
       ui.callout('warn', "Liste complète introuvable",
         "Aucune source consultée ne liste les noms de tous les Donjons Scellés (une source avance 61 donjons au total, non recoupé). Un seul est documenté : <b>Forest Library</b> (près de la gare Shugo Est, zone de Verteron ; accessible aux Elyos, aux Asmodiens via les Failles). À défaut de liste : une carte interactive (aion2atlas.com, AION2 Hub, Metabot) ou la carte en jeu (icône « ? »)."),
       ui.table(["Point", "Détail", "Vérification"], [
@@ -100,18 +100,18 @@
       ])));
 
     // --- Types de contenu ---
-    root.appendChild(ui.section({ id: 'dj-types', icon: '🗂️', title: "Types de contenu et compteurs", badge: ui.verified('08/10', "Compteurs : Metabot (maj 07/10), MeinMMO ; Raids en désaccord") },
+    root.appendChild(ui.section({ id: 'dj-types', icon: '', title: "Types de contenu et compteurs", badge: ui.verified('08/10', "Compteurs : Metabot (maj 07/10), MeinMMO ; Raids en désaccord") },
       ui.table(["Type", "Joueurs", "Compteur / cycle", "Note"], TYPES),
       el('p', { class: 'small muted' }, "Cycles de reset : mercredi 16h00 (Paris) pour l'hebdo. Détail complet et planificateur sur la page Routine.")));
 
     // --- Cube / Od ---
-    root.appendChild(ui.section({ id: 'dj-cube', icon: '🧊', title: "Cubes de récompense et Énergie d'Od" },
+    root.appendChild(ui.section({ id: 'dj-cube', icon: '', title: "Cubes de récompense et Énergie d'Od" },
       ui.callout('critical', "Ne sortez pas sans le cube",
         "Conquête / Transcendance : quitter sans prendre le cube = un « skip ». À 10 skips, le contenu est verrouillé jusqu'au reset."),
       el('p', null, "L'Énergie d'Od ouvre les cubes de récompense (≈ 40 par cube d'Expédition d'après MeinMMO). Ne la dépensez que sur le <b>palier le plus haut déjà clearé</b>. ", ui.unconfirmed("Chiffre MeinMMO (29/09), non recoupé"))));
 
     // --- Priorités ---
-    root.appendChild(ui.section({ id: 'dj-priorites', icon: '🎯', title: "Priorités : donjon quotidien et Missions de Devoir", badge: ui.unconfirmed("Cahier des charges") },
+    root.appendChild(ui.section({ id: 'dj-priorites', icon: '', title: "Priorités : donjon quotidien et Missions de Devoir", badge: ui.unconfirmed("Cahier des charges") },
       el('div', { class: 'grid c2' },
         el('div', { class: 'callout' }, el('strong', null, "Donjon quotidien"), "Priorité : Daeva Bio-Research Base (pierres d'enchant)."),
         el('div', { class: 'callout' }, el('strong', null, "Missions de Devoir (5/jour)"), "Choisir celles qui donnent des clés Hidden Cube ou des fragments Ariel's Trace (→ cristaux Daevanion)."),

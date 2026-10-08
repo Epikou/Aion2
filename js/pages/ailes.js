@@ -84,11 +84,11 @@
     id: 'ailes',
     render: function (root) {
       injectStyle();
-      root.appendChild(ui.hero({ id: 'ailes', title: 'Ailes & vol', icon: '🪽',
+      root.appendChild(ui.hero({ id: 'ailes', title: 'Ailes & vol', icon: '',
         subtitle: 'La Puissance de vol ne vient que de la collection d\'ailes. Voici comment la monter et voler sans gaspiller d\'énergie.' }));
 
       /* --- Puissance de vol --- */
-      root.appendChild(ui.section({ id: 'ailes-puissance', icon: '🪽', title: 'Puissance de vol : la collection d\'ailes', badge: ui.verified(V, 'Metabot, publié 01/10, mis à jour 07/10') },
+      root.appendChild(ui.section({ id: 'ailes-puissance', icon: '', title: 'Puissance de vol : la collection d\'ailes', badge: ui.verified(V, 'Metabot, publié 01/10, mis à jour 07/10') },
         el('ul', null,
           el('li', null, el('strong', null, '28 ailes'), ' dans le jeu, chacune avec une version Élyséenne et Asmodienne (56 entrées au total).'),
           el('li', null, 'Chaque aile a un effet « équipé » (seulement quand on la porte) et un effet « possédé » qui s\'applique dès qu\'on l\'a, même rangée. L\'effet possédé inclut toujours de la Puissance de vol et monte de +0 à +10.'),
@@ -100,7 +100,7 @@
       ));
 
       /* --- Boutique --- */
-      root.appendChild(ui.section({ id: 'ailes-boutique', icon: '🛍️', title: 'Ailes de boutique : 0 stat ?', badge: ui.badge('conflict', 'Nuance', 'Seules les 3 paires « Spéciales » sont purement cosmétiques ; d\'autres ailes de boutiques en jeu donnent des stats.') },
+      root.appendChild(ui.section({ id: 'ailes-boutique', icon: '', title: 'Ailes de boutique : 0 stat ?', badge: ui.badge('conflict', 'Nuance', 'Seules les 3 paires « Spéciales » sont purement cosmétiques ; d\'autres ailes de boutiques en jeu donnent des stats.') },
         el('p', null, 'Les ailes achetées avec de l\'argent réel (boutique Quna) sont cosmétiques et n\'apportent aucune stat, conformément à la règle de la boutique. Mais attention : des ailes vendues dans des boutiques « en jeu » ont bien des stats équipées.'),
         ui.table(['Aile', 'Boutique', 'Stats équipées (Metabot)'], [
           ['Nightmare Wings', 'Boutique Cauchemar', 'Dégâts de boss +3,5 %, Attaque +60, Critique +35, Précision +35'],
@@ -112,7 +112,7 @@
       ));
 
       /* --- Énergie de vol --- */
-      root.appendChild(ui.section({ id: 'ailes-energie', icon: '🔋', title: 'Énergie de vol', badge: ui.badge('conflict', 'Chiffres non retrouvés', 'Le regain de 120/jour correspond à l\'Énergie d\'Od (15 toutes les 3 h), pas à l\'énergie de vol, dans les sources consultées.') },
+      root.appendChild(ui.section({ id: 'ailes-energie', icon: '', title: 'Énergie de vol', badge: ui.badge('conflict', 'Chiffres non retrouvés', 'Le regain de 120/jour correspond à l\'Énergie d\'Od (15 toutes les 3 h), pas à l\'énergie de vol, dans les sources consultées.') },
         ui.callout('warn', 'Écart avec le cahier des charges', 'Le cahier des charges parle d\'un regain de 120/jour pour l\'énergie de vol. Aucune source ne confirme ce chiffre ni un plafond d\'énergie de vol. Le chiffre 120/jour (15 toutes les 3 h, plafond 560, ou 840 abonné) est celui de l\'<strong>Énergie d\'Od</strong> (Metabot, 07/10). Il y a probablement eu confusion : à vérifier en jeu avant de s\'y fier.'),
         el('p', null, 'Ce que disent les guides :'),
         el('ul', null,
@@ -124,14 +124,14 @@
       ));
 
       /* --- Technique de momentum --- */
-      root.appendChild(ui.section({ id: 'ailes-momentum', icon: '💨', title: 'Technique de momentum', badge: ui.badge('warn', 'Une source', 'Source unique (U4N, vendeur de Kina) : la technique correspond au cahier des charges mais n\'est pas recoupée ailleurs.') },
+      root.appendChild(ui.section({ id: 'ailes-momentum', icon: '', title: 'Technique de momentum', badge: ui.badge('warn', 'Une source', 'Source unique (U4N, vendeur de Kina) : la technique correspond au cahier des charges mais n\'est pas recoupée ailleurs.') },
         el('p', null, 'Voler → booster → désactiver (V) → réactiver → répéter : économise de l\'énergie sur les longs trajets.'),
         stepper(),
         ui.callout('info', 'Règle d\'or', 'Plonger quand on a de la hauteur, planer quand on a de la vitesse, éviter de monter inutilement (BoostRoom, février 2026).')
       ));
 
       /* --- Consommables --- */
-      root.appendChild(ui.section({ id: 'ailes-conso', icon: '🧪', title: 'Consommables et anneaux de vol', badge: ui.badge('warn', 'Une source', 'Sérums et anneaux : source U4N (08/10).') },
+      root.appendChild(ui.section({ id: 'ailes-conso', icon: '', title: 'Consommables et anneaux de vol', badge: ui.badge('warn', 'Une source', 'Sérums et anneaux : source U4N (08/10).') },
         ui.table(['Élément', 'Effet', 'Statut'], [
           ['Sérum de Vent (Wind Serum)', 'Remplit l\'énergie de vol en plein trajet ; à fabriquer ou à acheter', 'html:<span class="badge warn">Une source</span>'],
           ['Fabrication en Alchimie', 'Non retrouvée dans les sources consultées', 'html:<span class="badge warn">Non confirmé</span>'],

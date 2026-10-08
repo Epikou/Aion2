@@ -54,12 +54,12 @@
   ];
 
   var ROUTE = [
-    { icon: "🗿", title: "Kibelisks", body: "Activer <b>tous ceux qui sont sur votre chemin</b> (téléportation ensuite). Pas de détour obligatoire." },
-    { icon: "🪶", title: "Plumes (Empyrean Traces)", body: "À rendre au <b>Monolithe régional</b> : scrolls d'amulette de Révélation (source principale), clés Hidden Cube, stats permanentes, titres." },
-    { icon: "🔒", title: "Donjons Scellés (Hideouts)", body: "Clear unique, paliers niv.15 / 20 / 25… Chaque 1er clear : ~1 250 pierres d'enchant, 2 cristaux Daevanion, 15 000 Kina (liés), un titre." },
-    { icon: "🏯", title: "Forts (Strongholds)", body: "Clear unique, <b>2 scrolls de ceinture</b> chacun. Seule source du jeu : ceinture +10 = 10 scrolls, donc tous les forts comptent." },
-    { icon: "📜", title: "Quêtes régionales", body: "Prioriser celles qui donnent anneaux, boucles, colliers et runes PvE. Les quêtes vertes servent aussi à remplir la jauge d'Ascension." },
-    { icon: "⛏️", title: "Récolte", body: "Uniquement <b>sur le trajet</b> : elle fait monter l'Extraction d'Essence sans perdre de temps." }
+    { icon: "", title: "Kibelisks", body: "Activer <b>tous ceux qui sont sur votre chemin</b> (téléportation ensuite). Pas de détour obligatoire." },
+    { icon: "", title: "Plumes (Empyrean Traces)", body: "À rendre au <b>Monolithe régional</b> : scrolls d'amulette de Révélation (source principale), clés Hidden Cube, stats permanentes, titres." },
+    { icon: "", title: "Donjons Scellés (Hideouts)", body: "Clear unique, paliers niv.15 / 20 / 25… Chaque 1er clear : ~1 250 pierres d'enchant, 2 cristaux Daevanion, 15 000 Kina (liés), un titre." },
+    { icon: "", title: "Forts (Strongholds)", body: "Clear unique, <b>2 scrolls de ceinture</b> chacun. Seule source du jeu : ceinture +10 = 10 scrolls, donc tous les forts comptent." },
+    { icon: "", title: "Quêtes régionales", body: "Prioriser celles qui donnent anneaux, boucles, colliers et runes PvE. Les quêtes vertes servent aussi à remplir la jauge d'Ascension." },
+    { icon: "", title: "Récolte", body: "Uniquement <b>sur le trajet</b> : elle fait monter l'Extraction d'Essence sans perdre de temps." }
   ];
 
   var SYSTEMS = [
@@ -101,7 +101,7 @@
     var prof = AION.profile.get(), key = 'leveling.' + prof.id;
     var state = AION.store.get(key, {});
 
-    root.appendChild(ui.hero({ id: 'leveling', icon: '📈', title: 'Leveling 1 → 45',
+    root.appendChild(ui.hero({ id: 'leveling', icon: '', title: 'Leveling 1 → 45',
       subtitle: "Environ 10 à 15 heures de jeu. Rien n'est définitivement ratable, mais tout doit être fait au plus tard au 45 : le seul coût d'un oubli est le retour en arrière." }));
 
     // Zones dynamiques mises à jour au clic (barre globale + barres de palier)
@@ -119,17 +119,17 @@
     }
 
     // --- Verdict rapide : payer ? ---
-    root.appendChild(ui.section({ id: 'lv-pay', icon: '💳', title: "Payer pour monter en niveau ?", badge: ui.unconfirmed("Cahier des charges ; cohérent avec les guides lus, non testé en jeu") },
+    root.appendChild(ui.section({ id: 'lv-pay', icon: '', title: "Payer pour monter en niveau ?", badge: ui.unconfirmed("Cahier des charges ; cohérent avec les guides lus, non testé en jeu") },
       ui.callout('tip', "Non.", "Le leveling et les donjons sont accessibles sans abonnement. L'abonnement ne devient utile qu'ensuite (Marché, échange Kina ↔ Quna) : voir la page Économie."),
       el('p', { class: 'small muted' }, "Option : des personnages « parqués » au niveau 22 accumuleraient de l'Énergie d'Od (source communautaire, non officielle).")));
 
     // --- Roadmap ---
-    root.appendChild(ui.section({ id: 'lv-roadmap', icon: '🗺️', title: "Roadmap semaine par semaine" },
+    root.appendChild(ui.section({ id: 'lv-roadmap', icon: '', title: "Roadmap semaine par semaine" },
       globalBox, el('div', { style: { height: '14px' } }),
       ui.timeline(TIERS.map(function (t) { return { title: t.title, body: t.body }; }))));
 
     // --- Jalons cochables ---
-    var jal = ui.section({ id: 'lv-jalons', icon: '✅', title: "Jalons à cocher (sauvegardés par profil)" },
+    var jal = ui.section({ id: 'lv-jalons', icon: '', title: "Jalons à cocher (sauvegardés par profil)" },
       el('p', { class: 'small muted' }, "Cochez au fil du jeu. Chaque profil (Templar, Assassin, Chanteur) a sa propre progression, enregistrée dans ce navigateur."));
     TIERS.forEach(function (t) {
       var box = el('div'); tierBars[t.id] = box;
@@ -152,25 +152,25 @@
     repaintGlobal();
 
     // --- À faire en route ---
-    root.appendChild(ui.section({ id: 'lv-route', icon: '🧭', title: "À faire en route", badge: ui.unconfirmed("Cahier des charges ; récompenses des Donjons Scellés partiellement recoupées (page Donjons)") },
+    root.appendChild(ui.section({ id: 'lv-route', icon: '', title: "À faire en route", badge: ui.unconfirmed("Cahier des charges ; récompenses des Donjons Scellés partiellement recoupées (page Donjons)") },
       el('div', { class: 'grid c3' }, ROUTE.map(function (r) {
-        return el('div', { class: 'leveling-card' }, el('div', { class: 'leveling-big' }, r.icon), el('h3', null, r.title), el('div', { class: 'small', html: r.body }));
+        return el('div', { class: 'leveling-card' }, el('h3', null, r.title), el('div', { class: 'small', html: r.body }));
       }))));
 
     // --- Systèmes ---
-    root.appendChild(ui.section({ id: 'lv-systemes', icon: '🔓', title: "Systèmes à activer et niveaux de déblocage" },
+    root.appendChild(ui.section({ id: 'lv-systemes', icon: '', title: "Systèmes à activer et niveaux de déblocage" },
       ui.table(["Système", "Niveau", "À savoir"], SYSTEMS),
       ui.callout('warn', "Écart à vérifier : Daevanion et le Chanteur niveau 14",
         "Le palier annoncé pour Daevanion est le niveau 12, or votre Chanteur de niveau 14 ne l'a pas encore. Une quête ou une étape préalable est probablement requise : <b>à confirmer en jeu</b>."),
       el('p', { class: 'small' }, "Niveaux des Expéditions : Krao Cave 20, Urugugu Canyon 28, Temple du Feu 35 ", ui.verified('08/10', "Recoupé : AION2 Hub + livestream Global relayé par PlayNews"))));
 
     // --- Jauge d'Ascension ---
-    root.appendChild(ui.section({ id: 'lv-ascension', icon: '⛔', title: "Jauge d'Ascension : le mur vers 22 et 32", badge: ui.unconfirmed("Reprise du cahier des charges, non recoupée") },
+    root.appendChild(ui.section({ id: 'lv-ascension', icon: '', title: "Jauge d'Ascension : le mur vers 22 et 32", badge: ui.unconfirmed("Reprise du cahier des charges, non recoupée") },
       ui.callout('warn', "Quête principale bloquée ?",
         "Vers les niveaux <b>22</b> et <b>32</b>, la jauge d'Ascension doit être remplie pour poursuivre. Faites alors : <b>quêtes vertes</b> + <b>Donjons Scellés</b> + <b>Forts</b>. Ce sont aussi des contenus à faire de toute façon.")));
 
     // --- Erreurs ---
-    root.appendChild(ui.section({ id: 'lv-erreurs', icon: '🚫', title: "Erreurs classiques à éviter" },
+    root.appendChild(ui.section({ id: 'lv-erreurs', icon: '', title: "Erreurs classiques à éviter" },
       el('div', { class: 'grid c2' }, MISTAKES.map(function (m) {
         return el('div', { class: 'leveling-card' }, el('h3', null, m.t), el('div', { class: 'small', html: m.b }));
       }))));
