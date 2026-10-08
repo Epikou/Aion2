@@ -89,6 +89,9 @@
     var timer;
     function maj() {
       if (!box.isConnected) { clearInterval(timer); return; } // la page a changé : on arrête
+      dessiner();
+    }
+    function dessiner() {
       var t = Date.now(), all = prochains(t), boss = all.filter(function (e) { return e.type === 'boss'; })[0];
       if (boss) {
         nom.textContent = boss.nom; zone.textContent = boss.zone + ' (heure serveur)'; cd.textContent = duree(boss.ts - t);
@@ -101,7 +104,8 @@
           el('span', { class: 'muted' }, 'dans ' + duree(e.ts - t))));
       });
     }
-    maj(); timer = setInterval(maj, 1000);
+    dessiner();   // premier affichage immédiat (le bloc n'est pas encore dans la page)
+    timer = setInterval(maj, 1000);
     return box;
   }
 

@@ -19,6 +19,7 @@
           <select id="profile-select" class="btn sm" aria-label="Profil du joueur"></select>
         </label>
         <button id="search-btn" class="btn sm" title="Recherche (Ctrl+K)">Ctrl+K</button>
+        <button id="data-btn" class="btn sm" title="Exporter ou importer la progression">Sauvegarde</button>
         <button id="menu-btn" class="btn sm menu-btn" aria-expanded="false" aria-controls="tabs">Menu</button>
         <button id="theme-btn" class="btn sm" title="Changer de thème" aria-label="Changer de thème">Thème</button>
       </div>
@@ -32,6 +33,20 @@
     <div class="search-box">
       <input id="search-in" type="search" placeholder="Rechercher (ex. Kibelisk, Shugo, Daeva Pass…)" autocomplete="off">
       <div class="search-res" id="search-res"></div>
+    </div>
+  </div>
+
+  <div class="search-ov" id="data-ov" role="dialog" aria-label="Sauvegarde de la progression">
+    <div class="search-box data-box">
+      <h2>Sauvegarde de la progression</h2>
+      <p class="small muted">Vos cases cochées, jalons et planificateur sont enregistrés dans ce navigateur. Exportez un fichier pour les copier sur un autre appareil ou les partager, puis importez-le à l'arrivée.</p>
+      <div class="row">
+        <button id="data-export" class="btn">Exporter (fichier .json)</button>
+        <button id="data-import" class="btn">Importer un fichier</button>
+        <input id="data-file" type="file" accept="application/json,.json" hidden>
+      </div>
+      <p id="data-msg" class="small" role="status"></p>
+      <div class="row"><button id="data-close" class="btn sm">Fermer</button></div>
     </div>
   </div>
 

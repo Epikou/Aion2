@@ -4,14 +4,14 @@
    Toutes les couleurs passent par les variables ci-dessous.
    ============================================================ */
 :root {
-  --bg: #0e1118;
-  --bg-2: #131722;
-  --surface: #171c28;
-  --surface-2: #1e2434;
-  --line: #283048;
-  --text: #e7eaf3;
-  --muted: #8f98b1;
-  --blue: #6c9bff;
+  --bg: #17181b;
+  --bg-2: #1c1d21;
+  --surface: #222328;
+  --surface-2: #2b2d33;
+  --line: #3a3c44;
+  --text: #ececee;
+  --muted: #9b9da6;
+  --blue: #b4bccb;
   --gold: #d9b26a;
   --violet: #9d86ea;
   --green: #4fbf8b;
@@ -162,6 +162,12 @@ tbody tr:hover { background: var(--surface-2); }
 .search-res a { display: block; padding: 10px 18px; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--line); }
 .search-res a:hover, .search-res a.sel { background: var(--surface-2); }
 .search-res small { color: var(--muted); display: block; }
+
+/* ---------- Panneau de sauvegarde ---------- */
+.data-box { padding: 20px 22px; }
+.data-box h2 { margin-bottom: .4em; }
+.data-box .row { margin: 12px 0 0; }
+.subtabs .btn.active { color: var(--bg); }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {

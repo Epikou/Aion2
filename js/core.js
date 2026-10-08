@@ -27,7 +27,7 @@
 
   /* ---------- Profils ---------- */
   AION.profiles = [
-    { id: 'templar', name: 'Templar', role: 'Tank', icon: '', accent: '#5b8def' },
+    { id: 'templar', name: 'Templar', role: 'Tank', icon: '', accent: '#9aa5b8' },
     { id: 'assassin', name: 'Assassin', role: 'DPS', icon: '', accent: '#e0645c' },
     { id: 'chanter', name: 'Chanteur', role: 'Soutien', icon: '', accent: '#d6aa5c' }
   ];
@@ -263,7 +263,7 @@
     ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
     document.addEventListener('keydown', function (e) {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open(); }
-      else if (e.key === 'Escape') close();
+      else if (e.key === 'Escape') { close(); var d = document.getElementById('data-ov'); if (d) d.classList.remove('open'); }
       else if (e.key === 'Enter' && ov.classList.contains('open')) { var a = res.querySelector('a'); if (a) a.click(); }
     });
   }
@@ -307,6 +307,61 @@
     else window.scrollTo(0, 0);
   };
 
+  /* ---------- Sauvegarde : export / import de la progression (JSON) ----------
+     Le fichier contient toutes les clés « aion2.v1.* » sauf le thème (préférence de l'appareil). */
+  AION.backup = {
+    exportJson: function () {
+      var data = {};
+      try {
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i);
+          if (k.indexOf(PREFIX) === 0 && k !== PREFIX + 'theme') data[k] = localStorage.getItem(k);
+        }
+      } catch (e) { /* stockage indisponible : fichier vide */ }
+      return JSON.stringify({ app: 'aion2-guide', version: 1, exported: new Date().toISOString(), data: data }, null, 2);
+    },
+    // Retourne le nombre de clés importées ; lève une Error avec un message lisible si le fichier est invalide
+    importJson: function (text) {
+      if (text.length > 1e6) throw new Error('Fichier trop volumineux.');
+      var o; try { o = JSON.parse(text); } catch (e) { throw new Error('Ce fichier n\'est pas un JSON valide.'); }
+      if (!o || o.app !== 'aion2-guide' || typeof o.data !== 'object' || o.data === null) throw new Error('Ce fichier ne vient pas de ce guide.');
+      var keys = Object.keys(o.data).filter(function (k) { return k.indexOf(PREFIX) === 0 && k !== PREFIX + 'theme' && typeof o.data[k] === 'string'; });
+      try { keys.forEach(function (k) { JSON.parse(o.data[k]); }); }   // chaque valeur doit être du JSON valide
+      catch (e) { throw new Error('Le fichier est corrompu : une valeur est illisible.'); }
+      keys.forEach(function (k) { AION.store.set(k.slice(PREFIX.length), JSON.parse(o.data[k])); });
+      return keys.length;
+    }
+  };
+  function initBackup(profileSelect) {
+    var ov = document.getElementById('data-ov'), msg = document.getElementById('data-msg'), file = document.getElementById('data-file');
+    function say(t, bad) { msg.textContent = t; msg.style.color = bad ? 'var(--red)' : 'var(--green)'; }
+    function close() { ov.classList.remove('open'); }
+    document.getElementById('data-btn').addEventListener('click', function () { msg.textContent = ''; ov.classList.add('open'); });
+    document.getElementById('data-close').addEventListener('click', close);
+    ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+    document.getElementById('data-export').addEventListener('click', function () {
+      var blob = new Blob([AION.backup.exportJson()], { type: 'application/json' });
+      var a = el('a', { href: URL.createObjectURL(blob), download: 'aion2-progression-' + new Date().toISOString().slice(0, 10) + '.json' });
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      say('Fichier exporté.');
+    });
+    document.getElementById('data-import').addEventListener('click', function () { file.value = ''; file.click(); });
+    file.addEventListener('change', function () {
+      var f = file.files[0]; if (!f) return;
+      var r = new FileReader();
+      r.onload = function () {
+        if (!window.confirm('Importer ce fichier ? Les cases et notes de même nom seront remplacées par celles du fichier.')) return;
+        try {
+          var n = AION.backup.importJson(String(r.result));
+          profileSelect.value = AION.profile.get().id; AION.route();
+          say('Import terminé : ' + n + ' élément' + (n > 1 ? 's' : '') + ' restauré' + (n > 1 ? 's' : '') + '.');
+        } catch (e) { say(e.message, true); }
+      };
+      r.onerror = function () { say('Lecture du fichier impossible.', true); };
+      r.readAsText(f);
+    });
+  }
+
   /* ---------- Démarrage (appelé par boot.js) ---------- */
   AION.start = function () {
     var tabs = document.getElementById('tabs');
@@ -325,6 +380,7 @@
       try { localStorage.setItem(PREFIX + 'theme', cur); } catch (e) {}
     });
     initSearch();
+    initBackup(sel);
     window.addEventListener('hashchange', AION.route);
     AION.route();
   };
