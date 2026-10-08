@@ -160,7 +160,12 @@
     var back = el('div', { class: 'flip-face flip-back' }, typeof o.back === 'string' ? el('div', { html: o.back }) : o.back, el('span', { class: 'flip-hint' }, 'Retour'));
     var b = el('button', { class: 'flip', type: 'button', 'aria-pressed': 'false', 'aria-label': o.label || 'Retourner la carte', style: o.accent ? { '--accent': o.accent } : null },
       el('div', { class: 'flip-in' }, front, back));
-    b.addEventListener('click', function () { var f = b.classList.toggle('flipped'); b.setAttribute('aria-pressed', f); });
+    b.addEventListener('click', function () {
+      var f = b.classList.toggle('flipped'); b.setAttribute('aria-pressed', f);
+      // Petit « soulèvement » pendant la rotation (animation CSS .flipping)
+      b.classList.remove('flipping'); void b.offsetWidth; b.classList.add('flipping');
+      clearTimeout(b._ft); b._ft = setTimeout(function () { b.classList.remove('flipping'); }, 760);
+    });
     // Hauteur = la plus grande des deux faces (les faces sont en absolute)
     requestAnimationFrame(function () { requestAnimationFrame(function () {
       var h = Math.max(front.scrollHeight, back.scrollHeight, o.minHeight || 230); b.style.minHeight = (h + 4) + 'px';
