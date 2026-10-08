@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AION 2 — Guide de groupe PvE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // Applique le thème avant le rendu pour éviter un flash
+    try { var t = localStorage.getItem('aion2.v1.theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-in">
+      <a class="brand" href="#/home">AION 2 · Guide PvE</a>
+      <div class="tools">
+        <label class="profile-chip">Profil
+          <select id="profile-select" class="btn sm" aria-label="Profil du joueur"></select>
+        </label>
+        <button id="search-btn" class="btn sm" title="Recherche (Ctrl+K)">🔎 Ctrl+K</button>
+        <button id="theme-btn" class="btn sm" title="Changer de thème" aria-label="Changer de thème">🌓</button>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+  </header>
+
+  <main id="app"></main>
+
+  <div class="search-ov" id="search-ov" role="dialog" aria-label="Recherche">
+    <div class="search-box">
+      <input id="search-in" type="search" placeholder="Rechercher (ex. Kibelisk, Shugo, Daeva Pass…)" autocomplete="off">
+      <div class="search-res" id="search-res"></div>
+    </div>
+  </div>
+
+  <!-- Cœur : DOIT être chargé en premier -->
+  <script src="js/core.js"></script>
+  <!-- Données partagées -->
+  <script src="data/images.js"></script>
+  <script src="data/checklist.js"></script>
+  <!-- Pages (chacune s'enregistre via AION.register) -->
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/leveling.js"></script>
+  <script src="js/pages/classes.js"></script>
+  <script src="js/pages/donjons.js"></script>
+  <script src="js/pages/routine.js"></script>
+  <script src="js/pages/economie.js"></script>
+  <script src="js/pages/recolte.js"></script>
+  <script src="js/pages/abime.js"></script>
+  <script src="js/pages/guilde.js"></script>
+  <script src="js/pages/ailes.js"></script>
+  <!-- Démarrage : toujours en dernier -->
+  <script src="js/boot.js"></script>
+</body>
+</html>
